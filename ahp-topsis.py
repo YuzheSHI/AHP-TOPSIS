@@ -104,6 +104,19 @@ def topsis(W, res):
     dist_neg = np.sqrt(np.sum(weighted_neg, axis = 1))
     # calculate C
     C = np.true_divide(dist_pos, dist_pos + dist_neg)
+    # save results
+    save_Z = pd.DataFrame(data = Z)
+    save_Z.to_csv("Z.csv")
+    save_Z_pos = pd.DataFrame(data = Z_pos)
+    save_Z_pos.to_csv("Z_pos.csv")
+    save_Z_neg = pd.DataFrame(data = Z_neg)
+    save_Z_neg.to_csv("Z_neg.csv")
+    save_dist_pos = pd.DataFrame(data = dist_pos)
+    save_dist_pos.to_csv("Dist_pos.csv")
+    save_dist_neg = pd.DataFrame(data = dist_neg)
+    save_dist_neg.to_csv("Dist_neg.csv")
+    save_C = pd.DataFrame(data = C)
+    save_C.to_csv("C.csv")
     return C
 
 
@@ -116,6 +129,8 @@ if __name__ == "__main__":
     rpath = "./ques.xlsx"
     res = load_res(rpath)
     weight = gen_opt(data)
+    weightf = pd.DataFrame(data = weight)
+    weightf.to_csv("Weight.csv")
     print("Now operate TOPSIS...")
     C = topsis(weight, res)
     C = list(map(lambda x: float(x), C))
