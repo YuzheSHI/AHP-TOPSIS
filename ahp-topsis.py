@@ -103,7 +103,7 @@ def topsis(W, res):
     dist_pos = np.sqrt(np.sum(weighted_pos, axis = 1))
     dist_neg = np.sqrt(np.sum(weighted_neg, axis = 1))
     # calculate C
-    C = np.true_divide(dist_pos, dist_pos + dist_neg)
+    C = np.true_divide(dist_neg, dist_pos + dist_neg)
     # save results
     save_Z = pd.DataFrame(data = Z)
     save_Z.to_csv("Z.csv")
